@@ -98,11 +98,13 @@ html, body {
 
     .brand-tagline {
       margin-top: clamp(4rem, 15vh, 10rem);
-      color: $white;
+      color: $sky-deep-blue;
       font-size: clamp(1rem, 2.5vw, 1.75rem);
       font-weight: 800;
       letter-spacing: -0.01em;
       text-transform: lowercase;
+
+
       text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
     }
   }
@@ -114,11 +116,11 @@ html, body {
 // ==========================================================================
 .grid-section {
   position: relative;
-  height: 42vh;
+  height: 50vh;
   width: 100%;
-  min-height: 300px;
+  min-height: 380px;
   background-color: $grid-cyan-bg;
-  perspective: clamp(300px, 32vw, 700px); // shorter = more dramatic, closer-to-you depth
+  perspective: 450px; // shorter = more dramatic, closer-to-you depth
   perspective-origin: 50% 0%;
   overflow: hidden;
 
@@ -135,11 +137,11 @@ html, body {
 
   .perspective-grid {
     position: absolute;
-    width: 220%;
-    height: 500%;
-    left: -60%;
+    width: 260%;
+    height: 600%;
+    left: -80%;
     top: 0;
-    transform: rotateX(80deg);
+    transform: rotateX(78deg);
     transform-origin: top center;
     background-size: 50px 50px;
      background-color: $white;
