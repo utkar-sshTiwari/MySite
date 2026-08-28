@@ -1,0 +1,310 @@
+// ==========================================================================
+// Variables & Palette
+// ==========================================================================
+$sky-deep-blue: #0b3d91;
+$sky-mid-blue: #3a82ee;
+$sky-cyan-light: #70d2ff;
+$grid-cyan-bg: #00befa;
+$grid-blue-line: #003a8c;
+$white: #ffffff;
+
+$font-primary: 'Helvetica Neue', Arial, -apple-system, BlinkMacSystemFont, sans-serif;
+
+// ==========================================================================
+// Base Reset
+// ==========================================================================
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  font-family: $font-primary;
+  background-color: #000;
+}
+
+// ==========================================================================
+// Scanline / CRT Texture Overlay
+// ==========================================================================
+.crt-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  background: linear-gradient(
+    rgba(18, 16, 16, 0) 50%, 
+    rgba(0, 0, 0, 0.15) 50%
+  );
+  background-size: 100% 4px;
+}
+
+// ==========================================================================
+// Sky Header (Top Section)
+// ==========================================================================
+.sky-header {
+  position: relative;
+  height: 58vh;
+  width: 100%;
+  background: linear-gradient(180deg, $sky-deep-blue 0%, $sky-mid-blue 60%, $sky-cyan-light 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 3rem 2.5rem;
+  overflow: hidden;
+
+  // Converging sunburst lines towards bottom horizon
+  .radial-lines {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 1;
+    background: repeating-conic-gradient(
+      from 0deg at 50% 115%,
+      rgba(255, 255, 255, 0.3) 0deg 0.75deg,
+      transparent 0.75deg 2.5deg
+    );
+  }
+
+  .cloud-layer {
+    position: absolute;
+    bottom: -10%;
+    left: 0;
+    width: 100%;
+    height: 60%;
+    pointer-events: none;
+    z-index: 2;
+    background: radial-gradient(ellipse at 20% 80%, rgba(255, 255, 255, 0.75) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 90%, rgba(255, 255, 255, 0.85) 0%, transparent 45%);
+    filter: blur(20px);
+  }
+
+  .brand-content {
+    position: relative;
+    z-index: 3;
+
+    .brand-title {
+      color: $white;
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 900;
+      line-height: 0.88;
+      letter-spacing: -0.04em;
+      text-transform: lowercase;
+      text-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+
+    .brand-tagline {
+      margin-top: clamp(4rem, 15vh, 10rem);
+      color: $white;
+      font-size: clamp(1rem, 2.5vw, 1.75rem);
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      text-transform: lowercase;
+      text-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+    }
+  }
+}
+
+
+// ==========================================================================
+// 3D Perspective Grid Floor (Static White Wireframe)
+// ==========================================================================
+.grid-section {
+  position: relative;
+  height: 42vh;
+  width: 100%;
+  min-height: 300px;
+  background-color: $grid-cyan-bg;
+  perspective: clamp(300px, 32vw, 700px); // shorter = more dramatic, closer-to-you depth
+  perspective-origin: 50% 0%;
+  overflow: hidden;
+
+  .horizon-fade {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 40px;
+    background: linear-gradient(to bottom, $white, transparent);
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .perspective-grid {
+    position: absolute;
+    width: 220%;
+    height: 500%;
+    left: -60%;
+    top: 0;
+    transform: rotateX(80deg);
+    transform-origin: top center;
+    background-size: 50px 50px;
+     background-color: $white;
+
+    background-image:
+      linear-gradient(to right, $grid-blue-line 0.25px, transparent 2px),
+      linear-gradient(to bottom, $grid-blue-line 0.25px, transparent 2px);
+  }
+}
+
+
+
+.blink-letter {
+  display: inline-block;
+  animation: blink 1.2s infinite steps(1, start);
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.interactive-word {
+  cursor: pointer;
+  text-decoration: underline dotted rgba(255, 255, 255, 0.6);
+  transition: all 0.2s ease;
+
+  &:hover {
+    color: #ffcc00;
+    text-shadow: 0 0 8px rgba(255, 204, 0, 0.8);
+  }
+}
+
+// Global Mac OS 9 Window Overlay
+.mac-os9-window {
+  position: fixed;
+  top: 10%;
+  right: 4rem;
+  width: 520px;
+  background: #dddddd;
+  border: 2px solid #000;
+  box-shadow: 6px 6px 0px rgba(0, 0, 0, 0.4), inset 1px 1px 0px #fff;
+  font-family: 'Geneva', 'Chicago', 'Charcoal', sans-serif;
+  z-index: 100; // Floating above all sections
+  display: none;
+  flex-direction: column;
+
+  &.active {
+    display: flex;
+    animation: macPopIn 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .mac-title-bar {
+    height: 22px;
+    background: #cccccc;
+    border-bottom: 2px solid #000;
+    display: flex;
+    align-items: center;
+    padding: 0 4px;
+    gap: 4px;
+    user-select: none;
+
+    .mac-close-box {
+      width: 12px;
+      height: 12px;
+      background: #fff;
+      border: 1px solid #000;
+      box-shadow: inset -1px -1px 0 #888;
+      cursor: pointer;
+      outline: none;
+
+      &:active {
+        background: #000;
+      }
+    }
+
+    .mac-title-stripes {
+      flex: 1;
+      height: 10px;
+      background: repeating-linear-gradient(
+        to bottom,
+        #000 0px, #000 1px,
+        transparent 1px, transparent 2px
+      );
+    }
+
+    .mac-title-text {
+      font-size: 11px;
+      font-weight: bold;
+      color: #000;
+      padding: 0 6px;
+      background: #cccccc;
+      white-space: nowrap;
+    }
+
+    .mac-zoom-box {
+      width: 12px;
+      height: 12px;
+      background: #fff;
+      border: 1px solid #000;
+    }
+  }
+
+  .mac-sub-header {
+    background: #eeeeee;
+    font-size: 10px;
+    color: #333;
+    padding: 2px 8px;
+    border-bottom: 1px solid #999;
+  }
+
+  .mac-content-body {
+    background: #ffffff;
+    padding: 12px;
+    margin: 4px;
+    border: 1px solid #777;
+    font-size: 12px;
+    line-height: 1.4;
+    color: #000;
+    max-height: 220px;
+    overflow-y: auto;
+
+    p {
+      margin-bottom: 8px;
+    }
+  }
+
+  .mac-scrollbar-v, .mac-scrollbar-h {
+    background: #ccc;
+    font-size: 8px;
+    display: flex;
+    justify-content: space-between;
+    padding: 1px;
+    color: #000;
+    user-select: none;
+  }
+
+  .mac-scrollbar-v {
+    position: absolute;
+    right: 4px;
+    top: 48px;
+    bottom: 20px;
+    width: 14px;
+    flex-direction: column;
+    border-left: 1px solid #999;
+  }
+
+  .mac-scrollbar-h {
+    height: 14px;
+    margin: 0 4px 4px 4px;
+    border-top: 1px solid #999;
+  }
+}
+
+@keyframes macPopIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.85) translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>velocity : design : comfort</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Retro CRT / Scanline Overlay Effect -->
+    <div class="crt-overlay"></div>
+
+    <!-- Sky Section with Radial Sunburst Lines & Typography -->
+    <header class="sky-header">
+        <div class="radial-lines"></div>
+        <div class="cloud-layer"></div>
+	<!-- Container to hold multiple active Mac OS 9 windows -->
+	<div id="window-container"></div>
+        
+        <div class="brand-content">
+		<h1 class="brand-title">Utkarsh<br>Tiwari.<span class="blink-letter">X_=</span></h1>
+      
+	<p class="brand-tagline">
+                <span class="interactive-word" data-window="velocity">velocity</span> : 
+                <span class="interactive-word" data-window="design">design</span> : 
+                <span class="interactive-word" data-window="comfort">comfort</span>.
+        </p>
+
+	</div>
+    </header>
+
+    <!-- 3D Perspective Wireframe Grid Section -->
+    <main class="grid-section">
+        <div class="horizon-fade"></div>
+        <div class="perspective-grid"></div>
+    </main>
+
+
+    <!-- Global Reusable Mac OS 9 Modal Overlay -->
+    <div id="mac-window" class="mac-os9-window">
+        <div class="mac-title-bar">
+            <button id="mac-close-btn" class="mac-close-box"></button>
+            <div class="mac-title-stripes"></div>
+	    <span id="mac-title-text" class="mac-title-text">Max OS 9</span>
+            <div class="mac-title-stripes"></div>
+            <div class="mac-zoom-box"></div>
+        </div>
+        
+        <div id="mac-sub-header" class="mac-sub-header">
+            1 item available
+        </div>
+
+        <div id="mac-content-body" class="mac-content-body">
+            <!-- Dynamic JS Content Injected Here -->
+        </div>
+
+        <div class="mac-scrollbar-v"><div class="scroll-arrow-up">▲</div><div class="scroll-arrow-down">▼</div></div>
+        <div class="mac-scrollbar-h"><div class="scroll-arrow-left">◄</div><div class="scroll-arrow-right">►</div></div>
+    </div>
+
+	
+    <!-- ... end of HTML content ... -->
+    <script src="script.js"></script>
+
+
+</body>
+</html>
