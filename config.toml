@@ -1,11 +1,13 @@
 # The URL the site will be built for
-base_url = "https://github.com/utkar-sshTiwari/Mysite"
+base_url = "https://utkar-sshtiwari.github.io/MySite/"
 
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = true
 
 # Whether to build a search index to be used later on by a JavaScript library
 build_search_index = true
+
+compile_sass = true
 
 [markdown]
 
