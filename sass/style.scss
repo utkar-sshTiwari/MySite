@@ -125,6 +125,32 @@ html, body {
   overflow: hidden;
   clip-path: inset(0 0 0 0);
 
+
+
+
+
+&::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #ffcc00 0%, #ff6b6b 100%);
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0px, transparent 8px,
+      $grid-cyan-bg 8px, $grid-cyan-bg 12px
+    ),
+    linear-gradient(180deg, #ffcc00 0%, #ff6b6b 100%);
+  z-index: 1;
+  pointer-events: none;
+} 
+
+
   .horizon-fade {
     position: absolute;
     top: 0;
