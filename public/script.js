@@ -56,8 +56,16 @@ document.addEventListener('DOMContentLoaded', () => {
             sub: "User Experience / Stack",
             content: `
                 <p><strong>[RECENT LOG / REFLECTIONS]</strong></p>
-                <p> STOP! ^__< Work in Progress ^__^ +__+ 0__0 </p>
-            `
+		<p>
+		People Don't have any worth just because they are born, <br>
+		That's why they have to find their own meaning later on <br>
+		What we are given already has its value set from the start <br>
+		But the think that it comes with its own meaning, seems like leaving it up to others to decide, and that's revolting.
+		
+		<br>
+		</p>
+                <strong><p> STOP! ^__< Work in Progress ^__^ +__+ 0__0 </p></strong>
+            `	
         }
     };
 
